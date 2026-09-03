@@ -1,1 +1,3 @@
-# RPS-26
+# Vaje RPS
+
+Avtor: Klemen Dornik Voje
