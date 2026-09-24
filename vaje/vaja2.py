@@ -11,7 +11,12 @@ def vnos(s:list):
         s.append(izdelek)
 
 def posodobi(s:list):
-    pass
+    kaj = input("Spremeni: ").lower()
+    za = input("Za: ").lower()
+    for index in range(len(s)):
+        if s[index] == kaj:
+            s[index] = za
+        
 
 
 def briši(s:list):
