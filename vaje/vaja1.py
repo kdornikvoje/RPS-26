@@ -37,11 +37,11 @@ ime = "klemen Dornik"
 imeUpper = ime.upper()
 splIme = ime.split()
 print(splIme)
+
 print(type(splIme))
 ime = splIme[0][0]
 
 priimek = splIme[1][0]
-
 
 inicialke = f"{ime} . {priimek}"
 print(inicialke)
