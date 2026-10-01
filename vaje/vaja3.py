@@ -4,4 +4,4 @@ vreme = requests.get("https://api.open-meteo.com/v1/forecast?latitude=46.0511&lo
 
 klicjson = vreme.json()
 
-print(klicjson["current"]["temperature_2m"])
+print(f"{klicjson["current"]["temperature_2m"]}  °C")
