@@ -1,60 +1,43 @@
-def igra(igra):
-    while True:
-        a = input("Igralec A (K/Š/P): ").upper()
-        b = input("Igralec B (K/Š/P): ").upper()
+def izračunajZmage(igre:list) -> list:
+    zmage = []
+    for i in range(0, len(igre), 2):
+        # print(i, i+1)
+        prvi = igre[i]
+        drugi = igre[i+1]
+        odg = kdoZmaga(prvi, drugi)
+        zmage.append(odg)
+    return zmage
 
-        if a == "" or b == "":
-            break
-
-        if a != "K" and a != "Š" and a != "P":
-            print("Napačen vnos!")
-            continue
-
-        if b != "K" and b != "Š" and b != "P":
-            print("Napačen vnos!")
-            continue
-
-        igra.append(a)
-        igra.append(b)
-
-    return igra
-
-
-def rezultati(igra):
-    A = 0
-    B = 0
-    izenaceno = 0
-
-    for i in range(0, len(igra), 2):
-        a = igra[i]
-        b = igra[i + 1]
-
-        if a == b:
-            izenaceno = izenaceno + 1
-
-        elif (a == "K" and b == "Š") or \
-             (a == "Š" and b == "P") or \
-             (a == "P" and b == "K"):
-            A = A + 1
-
+def izdelajStat(zmage: list) -> list:
+    zmage1 = 0
+    zmage2 = 0
+    izen = 0
+    for z in zmage:
+        if z == 1:
+            zmage1 += 1
+        elif z == 2:
+            zmage2 += 1
         else:
-            B = B + 1
-
-    return A, B, izenaceno
-
-
-def main():
-    igraDB = []
-
-    igra(igraDB)
-
-    A, B, izenaceno = rezultati(igraDB)
-
-    print("Rezultati:")
-    print("Igralec A:", A)
-    print("Igralec B:", B)
-    print("Izenaceno:", izenaceno)
-
+            izen += 1
+            
+    return [izen, zmage1, zmage2] 
+       
+    #           'K'     'Š'      ->  1
+def kdoZmaga(prvi:str, drugi:str) -> int:
+    if prvi == drugi: return 0
+    if prvi == 'K' and drugi == 'Š': return 1
+    if prvi == 'K' and drugi == 'P': return 2
+    if prvi == 'Š' and drugi == 'K': return 2
+    if prvi == 'Š' and drugi == 'P': return 1
+    if prvi == 'P' and drugi == 'Š': return 2
+    if prvi == 'P' and drugi == 'K': return 1
+    
+    
 
 if __name__ == "__main__":
-    main()
+    # poz:   0    1   2   3   4     5   6   7
+    igre = ['K', 'Š', 'K', 'P', 'Š', 'P', 'K', 'K']
+    z = izračunajZmage(igre)
+    s = izdelajStat(z)
+    print(z)
+    print(s)
